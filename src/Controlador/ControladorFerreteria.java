@@ -1,7 +1,6 @@
 package Controlador;
 
-import Modelo.Cliente;
-import Modelo.Producto;
+import Modelo.*;
 
 public class ControladorFerreteria {
     private static ControladorFerreteria instance= null;
