@@ -1,7 +1,9 @@
 package Vista;
 
+import Controlador.ControladorFerreteria;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        UIFerreteria.getInstance().menu();
     }
 }
