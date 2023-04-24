@@ -21,9 +21,11 @@ public class ControladorFerreteria {
 
     public void creaCliente(Cliente nuevo){
         arrayClientes[contClientes]=nuevo;
+        contClientes++;
     }
     public void creaProducto(Producto nuevo){
         arrayProductos[contProductos]=nuevo;
+        contProductos++;
     }
     public Cliente[] listaClientes(){
         Cliente[] clientes = new Cliente[contClientes];
