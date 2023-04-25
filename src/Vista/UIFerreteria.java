@@ -61,14 +61,14 @@ public class UIFerreteria {
     public void creaProducto() {
         System.out.println("---------Crear un producto--------");
         System.out.print("Codigo: ");
-        long nombreProducto = sc.nextLong();
+        long codigo = sc.nextLong();
         System.out.print("Marca: ");
         String marca = sc.next();
         System.out.print("Descripcion: ");
         String descripcion = sc.next();
         System.out.print("Precio: ");
         int precioProducto = sc.nextInt();
-        Producto nuevoProducto = new Producto(nombreProducto, marca, descripcion, precioProducto);
+        Producto nuevoProducto = new Producto(codigo, marca, descripcion, precioProducto);
         ControladorFerreteria.getInstance().creaProducto(nuevoProducto);
         System.out.println("Producto creado con éxito");
     }
