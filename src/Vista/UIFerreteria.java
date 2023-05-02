@@ -48,14 +48,16 @@ public class UIFerreteria {
         System.out.print("Rut: ");
         String rut = sc.next();
         System.out.print("Nombre: ");
-        String nombre = sc.next();
+        String nombre = sc.nextLine();
+        sc.nextLine();
         System.out.print("Domicilio: ");
-        String direccion = sc.next();
+        String direccion = sc.nextLine();
         System.out.print("Teléfono: ");
         String telefono = sc.next();
         Cliente nuevoCliente = new Cliente(rut, nombre, direccion, telefono);
         ControladorFerreteria.getInstance().creaCliente(nuevoCliente);
         System.out.println("Cliente creado con éxito");
+
     }
 
     public void creaProducto() {
