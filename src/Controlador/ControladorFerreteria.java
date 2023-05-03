@@ -2,15 +2,16 @@ package Controlador;
 
 import Modelo.*;
 
+import java.util.ArrayList;
+
 public class ControladorFerreteria {
     private static ControladorFerreteria instance= null;
-    private static Cliente[] arrayClientes;
-    private int contClientes=0;
-    private static Producto[] arrayProductos;
-    private int contProductos=0;
+    private static ArrayList<Cliente> clientes;
+    private static ArrayList<Producto> productos;
+
     private ControladorFerreteria(){
-        arrayClientes = new Cliente[100];
-        arrayProductos =  new Producto[100];
+        clientes=new ArrayList<>();
+        productos=new ArrayList<>();
     }
     public static ControladorFerreteria getInstance() {
         if (instance==null){
@@ -20,25 +21,27 @@ public class ControladorFerreteria {
     }
 
     public void creaCliente(Cliente nuevo){
-        arrayClientes[contClientes]=nuevo;
-        contClientes++;
+        clientes.add(nuevo);
     }
     public void creaProducto(Producto nuevo){
-        arrayProductos[contProductos]=nuevo;
-        contProductos++;
+        productos.add(nuevo);
     }
     public Cliente[] listaClientes(){
-        Cliente[] clientes = new Cliente[contClientes];
-        for (int i =0 ; i<contClientes;i++){
-            clientes[i]=arrayClientes[i];
+        Cliente[] arrayClientes = new Cliente[clientes.size()];
+        int i=0;
+        for (Cliente cliente : clientes){
+            arrayClientes[i]=cliente;
+            i++;
         }
-        return clientes;
+        return arrayClientes;
     }
     public Producto[] listaProductos(){
-        Producto[] productos = new Producto[contProductos];
-        for (int i=0; i<contProductos;i++){
-            productos[i]=arrayProductos[i];
+        Producto[] arrayProductos = new Producto[productos.size()];
+        int i=0;
+        for (Producto producto : productos){
+            arrayProductos[i]=producto;
+            i++;
         }
-        return productos;
+        return arrayProductos;
     }
 }
