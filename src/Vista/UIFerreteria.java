@@ -46,10 +46,10 @@ public class UIFerreteria {
     public void creaCliente() {
         System.out.println("--------Ingresar cliente-------");
         System.out.print("Rut: ");
-        String rut = sc.next();
+        sc.nextLine();
+        String rut = sc.nextLine();
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
-        sc.nextLine();
         System.out.print("Domicilio: ");
         String direccion = sc.nextLine();
         System.out.print("Teléfono: ");
@@ -65,9 +65,10 @@ public class UIFerreteria {
         System.out.print("Codigo: ");
         long codigo = sc.nextLong();
         System.out.print("Marca: ");
-        String marca = sc.next();
+        sc.nextLine();
+        String marca = sc.nextLine();
         System.out.print("Descripcion: ");
-        String descripcion = sc.next();
+        String descripcion = sc.nextLine();
         System.out.print("Precio: ");
         int precioProducto = sc.nextInt();
         Producto nuevoProducto = new Producto(codigo, marca, descripcion, precioProducto);
