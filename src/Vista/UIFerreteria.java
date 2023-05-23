@@ -1,5 +1,6 @@
 package Vista;
 import Controlador.ControladorFerreteria;
+import Excepciones.ClienteException;
 import Modelo.Cliente;
 import Modelo.Producto;
 
@@ -44,20 +45,22 @@ public class UIFerreteria {
     }
 
     public void creaCliente() {
-        System.out.println("--------Ingresar cliente-------");
-        System.out.print("Rut: ");
-        sc.nextLine();
-        String rut = sc.nextLine();
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Domicilio: ");
-        String direccion = sc.nextLine();
-        System.out.print("Teléfono: ");
-        String telefono = sc.next();
-        Cliente nuevoCliente = new Cliente(rut, nombre, direccion, telefono);
-        ControladorFerreteria.getInstance().creaCliente(nuevoCliente);
-        System.out.println("Cliente creado con éxito");
-
+        try {
+            System.out.println("--------Ingresar cliente-------");
+            System.out.print("Rut: ");
+            sc.nextLine();
+            String rut = sc.nextLine();
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Domicilio: ");
+            String direccion = sc.nextLine();
+            System.out.print("Teléfono: ");
+            String telefono = sc.next();
+            Cliente nuevoCliente = new Cliente(rut, nombre, direccion, telefono);
+            ControladorFerreteria.getInstance().creaCliente(nuevoCliente);
+        }catch (ClienteException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void creaProducto() {

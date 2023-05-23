@@ -1,5 +1,6 @@
 package Controlador;
 
+import Excepciones.*;
 import Modelo.*;
 
 import java.util.ArrayList;
@@ -20,8 +21,14 @@ public class ControladorFerreteria {
         return instance;
     }
 
-    public void creaCliente(Cliente nuevo){
-        clientes.add(nuevo);
+    public void creaCliente(Cliente nuevo) throws ClienteException {
+        Cliente cli = buscaCliente(nuevo.getRut());
+        if (cli==null){
+            clientes.add(nuevo);
+            System.out.println("Cliente creado con exito ");
+        }else {
+            throw new ClienteException("El cliente ya existe");
+        }
     }
     public void creaProducto(Producto nuevo){
         productos.add(nuevo);
@@ -43,5 +50,13 @@ public class ControladorFerreteria {
             i++;
         }
         return arrayProductos;
+    }
+    private Cliente buscaCliente(String rut){
+        for (Cliente cliente :  clientes){
+            if (rut.equals(cliente.getRut())){
+                return cliente;
+            }
+        }
+        return null;
     }
 }
