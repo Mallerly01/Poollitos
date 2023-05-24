@@ -8,12 +8,11 @@ public class Producto {
     private int precio;
     private int cantidad;
 
-    public Producto(long code, String marc, String desc, int precio, int cantidad){
+    public Producto(long code, String marc, String desc, int precio){
         codigo = code;
         marca = marc;
         descripcion = desc;
         this.precio = precio;
-        this.cantidad = cantidad;
     }
 
     public long getCodigo() {
@@ -48,11 +47,9 @@ public class Producto {
         this.precio = precio;
     }
 
-
     public int getCantidad() {
         return cantidad;
     }
-
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;

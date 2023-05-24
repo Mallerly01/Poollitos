@@ -73,9 +73,7 @@ public class UIFerreteria {
         String descripcion = sc.nextLine();
         System.out.print("Precio: ");
         int precioProducto = sc.nextInt();
-        System.out.print("Cantidad: ");
-        int cantidad = sc.nextInt();
-        Producto nuevoProducto = new Producto(codigo, marca, descripcion, precioProducto, cantidad);
+        Producto nuevoProducto = new Producto(codigo, marca, descripcion, precioProducto);
         ControladorFerreteria.getInstance().creaProducto(nuevoProducto);
         System.out.println("Producto creado con éxito");
     }
