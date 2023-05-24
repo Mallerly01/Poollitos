@@ -9,7 +9,6 @@ public class UIFerreteria {
     private static UIFerreteria instance = null;
 
     private UIFerreteria() {
-
     }
 
     public static UIFerreteria getInstance() {
