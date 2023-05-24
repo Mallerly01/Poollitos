@@ -6,12 +6,14 @@ public class Producto {
     private String marca;
     private String descripcion;
     private int precio;
+    private int cantidad;
 
-    public Producto(long code, String marc, String desc, int precio){
+    public Producto(long code, String marc, String desc, int precio, int cantidad){
         codigo = code;
         marca = marc;
         descripcion = desc;
         this.precio = precio;
+        this.cantidad = cantidad;
     }
 
     public long getCodigo() {
@@ -44,5 +46,15 @@ public class Producto {
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }
