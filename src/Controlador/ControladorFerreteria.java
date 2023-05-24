@@ -9,10 +9,12 @@ public class ControladorFerreteria {
     private static ControladorFerreteria instance= null;
     private static ArrayList<Cliente> clientes;
     private static ArrayList<Producto> productos;
+    private static ArrayList<Venta> ventas;
 
     private ControladorFerreteria(){
-        clientes=new ArrayList<>();
-        productos=new ArrayList<>();
+        clientes = new ArrayList<>();
+        productos = new ArrayList<>();
+        ventas = new ArrayList<>();
     }
     public static ControladorFerreteria getInstance() {
         if (instance==null){
