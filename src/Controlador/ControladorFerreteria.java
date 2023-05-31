@@ -41,9 +41,19 @@ public class ControladorFerreteria {
         Producto[] arrayProductos = new Producto[productos.size()];
         int i=0;
         for (Producto producto : productos){
-            arrayProductos[i]=producto;
+            arrayProductos[i] = producto;
             i++;
         }
         return arrayProductos;
+    }
+
+    public Venta[] listaVentas(){
+        Venta[] arrayVentas = new Venta[ventas.size()];
+        int i=0;
+        for (Venta venta : ventas){
+            arrayVentas[i] = venta;
+            i++;
+        }
+        return arrayVentas;
     }
 }

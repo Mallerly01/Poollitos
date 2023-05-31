@@ -2,6 +2,7 @@ package Vista;
 import Controlador.ControladorFerreteria;
 import Modelo.Cliente;
 import Modelo.Producto;
+import Modelo.Venta;
 
 import java.util.Scanner;
 
@@ -91,6 +92,10 @@ public class UIFerreteria {
         for (Cliente c : clientes) {
             System.out.printf("%-12s %-25s %-30s %-12s %n", c.getRut(), c.getNombre(), c.getDireccion(), c.getTelefono());
         }
+
+    }
+
+    public void listaVentas(){
 
     }
 }

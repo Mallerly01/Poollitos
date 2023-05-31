@@ -6,7 +6,6 @@ public class Producto {
     private String marca;
     private String descripcion;
     private int precio;
-    private int cantidad;
 
     public Producto(long code, String marc, String desc, int precio){
         codigo = code;
@@ -47,11 +46,4 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 }
