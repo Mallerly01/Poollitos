@@ -3,6 +3,7 @@ import Controlador.ControladorFerreteria;
 import Excepciones.ClienteException;
 import Modelo.Cliente;
 import Modelo.Producto;
+import Modelo.Venta;
 
 import java.util.Scanner;
 
@@ -10,7 +11,6 @@ public class UIFerreteria {
     private static UIFerreteria instance = null;
 
     private UIFerreteria() {
-
     }
 
     public static UIFerreteria getInstance() {
@@ -95,6 +95,10 @@ public class UIFerreteria {
         for (Cliente c : clientes) {
             System.out.printf("%-12s %-25s %-30s %-12s %n", c.getRut(), c.getNombre(), c.getDireccion(), c.getTelefono());
         }
+
+    }
+
+    public void listaVentas(){
 
     }
 }
