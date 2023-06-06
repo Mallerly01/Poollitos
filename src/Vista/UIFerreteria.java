@@ -59,7 +59,7 @@ public class UIFerreteria {
             System.out.print("Rut del Cliente: ");
             String rut = sc.next();
             Venta v = ControladorFerreteria.getInstance().creaVenta(rut);
-            System.out.println("nombre del cliente: " + v.getMiCliente().getNombre());
+            System.out.println("nombre del cliente: " + v.getElCliente().getNombre());
             System.out.println("Ingresando productos a la venta");
             System.out.println("codigo: ");
             long codProd;
@@ -97,18 +97,22 @@ public class UIFerreteria {
     }
 
     public void creaProducto() {
-        System.out.println("---------Crear un producto--------");
-        System.out.print("Codigo: ");
-        long codigo = sc.nextLong();
-        System.out.print("Marca: ");
-        sc.nextLine();
-        String marca = sc.nextLine();
-        System.out.print("Descripcion: ");
-        String descripcion = sc.nextLine();
-        System.out.print("Precio: ");
-        int precioProducto = sc.nextInt();
-        Producto nuevoProducto = new Producto(codigo, marca, descripcion, precioProducto);
-        ControladorFerreteria.getInstance().creaProducto(nuevoProducto);
+        try {
+            System.out.println("---------Crear un producto--------");
+            System.out.print("Codigo: ");
+            long codigo = sc.nextLong();
+            System.out.print("Marca: ");
+            sc.nextLine();
+            String marca = sc.nextLine();
+            System.out.print("Descripcion: ");
+            String descripcion = sc.nextLine();
+            System.out.print("Precio: ");
+            int precioProducto = sc.nextInt();
+            Producto nuevoProducto = new Producto(codigo, marca, descripcion, precioProducto);
+            ControladorFerreteria.getInstance().creaProducto(nuevoProducto);
+        } catch (ProductoException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Producto creado con éxito");
     }
 
