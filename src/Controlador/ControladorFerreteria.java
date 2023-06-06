@@ -1,8 +1,10 @@
 package Controlador;
 
-import Excepciones.*;
+import Excepciones.ClienteException;
+import Excepciones.ProductoException;
 import Modelo.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ControladorFerreteria {
@@ -32,8 +34,34 @@ public class ControladorFerreteria {
             throw new ClienteException("El cliente ya existe");
         }
     }
-    public void creaProducto(Producto nuevo){
-        productos.add(nuevo);
+    public void creaProducto(Producto nuevo) throws ProductoException {
+        Producto p= buscaProducto(nuevo.getCodigo());
+        if (p==null){
+            productos.add(nuevo);
+        }else {
+            throw new ProductoException("el producto ya existe");
+        }
+    }
+    public Venta creaVenta(String rut) throws ClienteException{
+        Cliente cli = buscaCliente(rut);
+        if (cli!=null){
+            long cod=ventas.size();
+            Venta v=new Venta(cod, LocalDate.now(), cli);
+            ventas.add(v);
+            return v;
+        }else {
+            throw new ClienteException("el cliente no existe");
+        }
+    }
+
+    public void agregarProductoALaVenta(long cod, Venta v, int cant)throws ProductoException{
+        Producto prod = buscaProducto(cod);
+        if (prod!=null){
+            v.agregarDetalleVenta(prod,cant);
+            System.out.println("Producto ingresado con exito");
+        }else {
+            throw new ProductoException("el producto ingresado no existe");
+        }
     }
     public Cliente[] listaClientes(){
         Cliente[] arrayClientes = new Cliente[clientes.size()];
@@ -48,15 +76,44 @@ public class ControladorFerreteria {
         Producto[] arrayProductos = new Producto[productos.size()];
         int i=0;
         for (Producto producto : productos){
-            arrayProductos[i]=producto;
+            arrayProductos[i] = producto;
             i++;
         }
         return arrayProductos;
     }
+
+    public Venta[] listaVentas(){
+        Venta[] arrayVentas = new Venta[ventas.size()];
+        int i=0;
+        for (Venta venta : ventas){
+            arrayVentas[i] = venta;
+            i++;
+        }
+        return arrayVentas;
+    }
+
     private Cliente buscaCliente(String rut){
         for (Cliente cliente :  clientes){
             if (rut.equals(cliente.getRut())){
                 return cliente;
+            }
+        }
+        return null;
+    }
+
+    private Producto buscaProducto(long codigo){
+        for (Producto producto : productos){
+            if (codigo==producto.getCodigo()){
+                return producto;
+            }
+        }
+        return null;
+    }
+
+    private Venta buscaVenta(long codigo){
+        for (Venta venta : ventas){
+            if (codigo==venta.getCodigoVenta()){
+                return venta;
             }
         }
         return null;
