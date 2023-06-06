@@ -1,14 +1,15 @@
 package Modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 //guardar archivos y recuperar archivos
 public class Venta {
     private long codigoVenta;
-    private String fecha;
+    private LocalDate fecha;
     private ArrayList<DetalleVenta> misDetalles;
     private Cliente elCliente;
 
-    public Venta(long codigoVenta,String fecha,  Cliente elCliente){
+    public Venta(long codigoVenta, LocalDate fecha, Cliente elCliente){
         this.codigoVenta = codigoVenta;
         this.fecha = fecha;
         this.misDetalles = new ArrayList<>();
@@ -23,11 +24,11 @@ public class Venta {
         this.codigoVenta = codigoVenta;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

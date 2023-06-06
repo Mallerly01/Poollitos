@@ -2,7 +2,9 @@ package Vista;
 import Controlador.ControladorFerreteria;
 import Excepciones.ClienteException;
 import Excepciones.ProductoException;
+import Excepciones.VentaException;
 import Modelo.Cliente;
+import Modelo.DetalleVenta;
 import Modelo.Producto;
 import Modelo.Venta;
 
@@ -44,7 +46,7 @@ public class UIFerreteria {
                 case 3 -> crearVenta();
                 case 4 -> listaCliente();
                 case 5 -> listaProductos();
-                case 5 -> listarVentas();
+                case 6 -> listarVentas();
                 case 7 -> guardarDatos();
                 case 8 -> leerDatos();
                 case 9 -> System.out.println("Saliendo del menú...");
@@ -53,7 +55,8 @@ public class UIFerreteria {
         } while (opcion != 5);
     }
 
-    public void creaVenta() {
+
+    public void crearVenta() {
         try {
             System.out.println("---------Creando una Venta----------");
             System.out.print("Rut del Cliente: ");
@@ -135,7 +138,48 @@ public class UIFerreteria {
 
     }
 
-    public void listaVentas(){
+    public void listarVentas(){
+        try {
+            Venta[] ventas = ControladorFerreteria.getInstance().listarVentas();
+            System.out.println("Lista de ventas: ");
+            System.out.printf("%-15s %-15s %-25s %-25s %n", "Código", "Fecha", "Rut del Cliente", "Nombre del cliente");
+            for (Venta v : ventas){
+                System.out.printf("%-15s %-15s %-25s %-25s %n", v.getCodigoVenta(), v.getFecha(), v.getElCliente().getRut(), v.getElCliente().getNombre());
+            }
+            for (Venta v : ventas){
+                long codigoVenta = v.getCodigoVenta();
+                DetalleVenta[] detallesVenta = ControladorFerreteria.getInstance().listarDetalleVenta(codigoVenta);
+                System.out.println("*****Detalles de venta*****");
+                System.out.println("Código de vemta: "+ codigoVenta);
+                int total=0;
+                System.out.println("***********************************************************************************************************");
+                System.out.printf("%-15s %-20s %-10s %-15s %n", "Código", "Descripción", "Cantidad", "Precio unitario", "SubTotal");
+                for (DetalleVenta detalle : detallesVenta) {
+                    int subTotal = detalle.getProducto().getPrecio()*detalle.getCantidad();
+                    total+=subTotal;
+                    System.out.printf("%-15s %-20s %-10s %-15s %n", detalle.getProducto().getCodigo(), detalle.getProducto().getDescripcion(),
+                            detalle.getCantidad(), detalle.getProducto().getPrecio(), subTotal);
+                }
+                System.out.println("TOTAL NETO: "+ total);
+                double iva = total*0.19;
+                System.out.println("IVA: "+ iva);
+                System.out.println("TOTAL DE LA VENTA: " + (total+iva));
 
+
+            }
+
+
+        } catch (VentaException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+    private void guardarDatos() {
+
+    }
+
+    private void leerDatos() {
     }
 }

@@ -2,6 +2,7 @@ package Controlador;
 
 import Excepciones.ClienteException;
 import Excepciones.ProductoException;
+import Excepciones.VentaException;
 import Modelo.*;
 
 import java.time.LocalDate;
@@ -118,4 +119,28 @@ public class ControladorFerreteria {
         }
         return null;
     }
+
+    public Venta[] listarVentas(){
+        Venta[] arrayVentas = new Venta[ventas.size()];
+        int i=0;
+        for (Venta venta : ventas){
+            arrayVentas[i]=venta;
+            i++;
+        }
+        return arrayVentas;
+    }
+
+    public DetalleVenta[] listarDetalleVenta(long codigoVenta) throws VentaException {
+        Venta v = buscaVenta(codigoVenta);
+        if (v!=null){
+            DetalleVenta[] detallesVenta =v.getDetallestoString();
+            return detallesVenta;
+        }
+        throw new VentaException("La venta ingresada no existe");
+
+    }
+
+
+
+
 }
