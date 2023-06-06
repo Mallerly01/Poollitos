@@ -55,11 +55,11 @@ public class ControladorFerreteria {
         }
     }
 
-    public void agregarProductoALaVenta(long cod, Venta v, int cant)throws ProductoException{
+    public void agregarProductoALaVenta(long cod, Venta v, int cant) throws ProductoException{
         Producto prod = buscaProducto(cod);
         if (prod!=null){
             v.agregarDetalleVenta(prod,cant);
-            System.out.println("Producto ingresado con exito");
+            System.out.println("Producto ingresado con éxito");
         }else {
             throw new ProductoException("el producto ingresado no existe");
         }
