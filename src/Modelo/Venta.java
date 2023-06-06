@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Venta {
     private long codigoVenta;
     private String fecha;
-    private ArrayList<Producto> misProductos;
+    private ArrayList<DetalleVenta> misDetalles;
     private Cliente elCliente;
 
-    public Venta(long codigoVenta,String fecha, ArrayList<Producto> misProductos, Cliente elCliente){
+    public Venta(long codigoVenta,String fecha,  Cliente elCliente){
         this.codigoVenta = codigoVenta;
         this.fecha = fecha;
-        this.misProductos = new ArrayList<>();
+        this.misDetalles = new ArrayList<>();
         this.elCliente = elCliente;
     }
 
@@ -31,19 +31,23 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public ArrayList<Producto> getMisProductos() {
-        return misProductos;
-    }
-
-    public void setMisProductos(ArrayList<Producto> misProductos) {
-        this.misProductos = misProductos;
-    }
-
     public Cliente getElCliente() {
         return elCliente;
     }
 
     public void setElCliente(Cliente elCliente) {
         this.elCliente = elCliente;
+    }
+
+    public DetalleVenta[] getDetallestoString(){
+        DetalleVenta[] arrayDetalles = new DetalleVenta[misDetalles.size()];
+        int i = 0;
+        for (DetalleVenta detalle : misDetalles) {
+            arrayDetalles[i] = detalle;
+        }
+        return arrayDetalles;
+    }
+    public void agregarDetalleVenta(Producto p, int cant){
+        misDetalles.add(new DetalleVenta(cant,p,this));
     }
 }
