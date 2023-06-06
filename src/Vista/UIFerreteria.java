@@ -52,7 +52,7 @@ public class UIFerreteria {
                 case 9 -> System.out.println("Saliendo del menú...");
                 default -> System.out.println("Opción inválida, por favor ingrese una opción válida");
             }
-        } while (opcion != 5);
+        } while (opcion != 9);
     }
 
 
@@ -153,11 +153,11 @@ public class UIFerreteria {
                 System.out.println("Código de vemta: "+ codigoVenta);
                 int total=0;
                 System.out.println("***********************************************************************************************************");
-                System.out.printf("%-15s %-20s %-10s %-15s %n", "Código", "Descripción", "Cantidad", "Precio unitario", "SubTotal");
+                System.out.printf("%-15s %-20s %-10s %-15s %-20s %n", "Código", "Descripción", "Cantidad", "Precio unitario", "SubTotal");
                 for (DetalleVenta detalle : detallesVenta) {
                     int subTotal = detalle.getProducto().getPrecio()*detalle.getCantidad();
                     total+=subTotal;
-                    System.out.printf("%-15s %-20s %-10s %-15s %n", detalle.getProducto().getCodigo(), detalle.getProducto().getDescripcion(),
+                    System.out.printf("%-15s %-20s %-10s %-15s %-20s %n", detalle.getProducto().getCodigo(), detalle.getProducto().getDescripcion(),
                             detalle.getCantidad(), detalle.getProducto().getPrecio(), subTotal);
                 }
                 System.out.println("TOTAL NETO: "+ total);
