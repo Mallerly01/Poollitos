@@ -69,7 +69,7 @@ public class UIFerreteria {
             do {
                 codProd = sc.nextLong();
                 if (codProd != -1) {
-                    System.out.println("ingrese ls cantidad del producto: ");
+                    System.out.println("ingrese la cantidad del producto: ");
                     int cant = sc.nextInt();
                     ControladorFerreteria.getInstance().agregarProductoALaVenta(codProd, v, cant);
                     System.out.println("Ingrese -1 para finalizar");

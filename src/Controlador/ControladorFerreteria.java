@@ -83,16 +83,6 @@ public class ControladorFerreteria {
         return arrayProductos;
     }
 
-    public Venta[] listaVentas(){
-        Venta[] arrayVentas = new Venta[ventas.size()];
-        int i=0;
-        for (Venta venta : ventas){
-            arrayVentas[i] = venta;
-            i++;
-        }
-        return arrayVentas;
-    }
-
     private Cliente buscaCliente(String rut){
         for (Cliente cliente :  clientes){
             if (rut.equals(cliente.getRut())){
