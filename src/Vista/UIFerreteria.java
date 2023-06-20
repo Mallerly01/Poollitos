@@ -8,6 +8,9 @@ import Modelo.DetalleVenta;
 import Modelo.Producto;
 import Modelo.Venta;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UIFerreteria {
@@ -36,7 +39,7 @@ public class UIFerreteria {
             System.out.println("5. Listar todos los productos");
             System.out.println("6. Listar ventas");
             System.out.println("7. Guardar datos");
-            System.out.println("8. Leer datos");
+            System.out.println("8. Cargar datos");
             System.out.println("9. Salir");
             System.out.print("Elija una opción: ");
             opcion = sc.nextInt();
@@ -48,7 +51,7 @@ public class UIFerreteria {
                 case 5 -> listaProductos();
                 case 6 -> listarVentas();
                 case 7 -> guardarDatos();
-                case 8 -> leerDatos();
+                case 8 -> cargarDatos();
                 case 9 -> System.out.println("Saliendo del menú...");
                 default -> System.out.println("Opción inválida, por favor ingrese una opción válida");
             }
@@ -80,6 +83,7 @@ public class UIFerreteria {
             System.out.println(e.getMessage());
         }
     }
+
     public void creaCliente() {
         try {
             System.out.println("--------Ingresar cliente-------");
@@ -94,7 +98,7 @@ public class UIFerreteria {
             String telefono = sc.next();
             Cliente nuevoCliente = new Cliente(rut, nombre, direccion, telefono);
             ControladorFerreteria.getInstance().creaCliente(nuevoCliente);
-        }catch (ClienteException e){
+        } catch (ClienteException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -138,48 +142,51 @@ public class UIFerreteria {
 
     }
 
-    public void listarVentas(){
+    public void listarVentas() {
         try {
             Venta[] ventas = ControladorFerreteria.getInstance().listarVentas();
             System.out.println("Lista de ventas: ");
             System.out.printf("%-15s %-15s %-25s %-25s %n", "Código", "Fecha", "Rut del Cliente", "Nombre del cliente");
-            for (Venta v : ventas){
+            for (Venta v : ventas) {
                 System.out.printf("%-15s %-15s %-25s %-25s %n", v.getCodigoVenta(), v.getFecha(), v.getElCliente().getRut(), v.getElCliente().getNombre());
             }
-            for (Venta v : ventas){
+            for (Venta v : ventas) {
                 long codigoVenta = v.getCodigoVenta();
                 DetalleVenta[] detallesVenta = ControladorFerreteria.getInstance().listarDetalleVenta(codigoVenta);
                 System.out.println("*****Detalles de venta*****");
-                System.out.println("Código de vemta: "+ codigoVenta);
-                int total=0;
+                System.out.println("Código de vemta: " + codigoVenta);
+                int total = 0;
                 System.out.println("***********************************************************************************************************");
                 System.out.printf("%-15s %-20s %-10s %-15s %-20s %n", "Código", "Descripción", "Cantidad", "Precio unitario", "SubTotal");
                 for (DetalleVenta detalle : detallesVenta) {
-                    int subTotal = detalle.getProducto().getPrecio()*detalle.getCantidad();
-                    total+=subTotal;
+                    int subTotal = detalle.getProducto().getPrecio() * detalle.getCantidad();
+                    total += subTotal;
                     System.out.printf("%-15s %-20s %-10s %-15s %-20s %n", detalle.getProducto().getCodigo(), detalle.getProducto().getDescripcion(),
                             detalle.getCantidad(), detalle.getProducto().getPrecio(), subTotal);
                 }
-                System.out.println("TOTAL NETO: "+ total);
-                double iva = total*0.19;
-                System.out.println("IVA: "+ iva);
-                System.out.println("TOTAL DE LA VENTA: " + (total+iva));
+                System.out.println("TOTAL NETO: " + total);
+                double iva = total * 0.19;
+                System.out.println("IVA: " + iva);
+                System.out.println("TOTAL DE LA VENTA: " + (total + iva));
 
 
             }
 
 
-        } catch (VentaException e){
+        } catch (VentaException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
 
-    private void guardarDatos() {
+    public void guardarDatos() {
+           ControladorFerreteria.getInstance().escribirArchivo();
 
     }
 
-    private void leerDatos() {
+    public void cargarDatos() {
+        ControladorFerreteria.getInstance().leerArchivo();
+
     }
 }
