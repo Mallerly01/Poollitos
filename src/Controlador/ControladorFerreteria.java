@@ -153,10 +153,10 @@ public class ControladorFerreteria {
      PrintWriter pwVentas;
      PrintWriter pwDetallesVentas;
         try {
-            pwClientes = new PrintWriter(new FileOutputStream(new File("Clientes.txt"),false));
-            pwProductos = new PrintWriter(new FileOutputStream(new File("Productos.txt"),false));
-            pwVentas = new PrintWriter(new FileOutputStream(new File("Ventas.txt"),false));
-            pwDetallesVentas= new PrintWriter(new FileOutputStream(new File("DetallesVentas.txt"),false));
+            pwClientes = new PrintWriter(new FileOutputStream(new File("Clientes.txt"),true));
+            pwProductos = new PrintWriter(new FileOutputStream(new File("Productos.txt"),true));
+            pwVentas = new PrintWriter(new FileOutputStream(new File("Ventas.txt"),true));
+            pwDetallesVentas= new PrintWriter(new FileOutputStream(new File("DetallesVentas.txt"),true));
             //se coloca false si quieres que borre el archivo existente i vuelva a escribirlo y
             // true si se continua escribiendo el que ya existe
         }catch (IOException e){
@@ -188,7 +188,7 @@ public class ControladorFerreteria {
 
 
 }
-    public void leerArchivo() {
+    public void leerArchivo() throws ClienteException, ProductoException{
         Scanner fClientes;
         Scanner fProductos;
         Scanner fVentas;
@@ -212,7 +212,8 @@ public class ControladorFerreteria {
             nombre = fClientes.next();
             direccion = fClientes.next();
             telefono = fClientes.next();
-            clientes.add(new Cliente(rut, nombre, direccion, telefono));
+            Cliente cli= new Cliente(rut, nombre, direccion, telefono);
+            creaCliente(cli);
 
         }
         fClientes.close();
@@ -224,7 +225,8 @@ public class ControladorFerreteria {
             marca = fProductos.next();
             descripcion = fProductos.next();
             precio = fProductos.nextInt();
-            productos.add(new Producto(codProd, marca, descripcion, precio));
+            Producto prod =new Producto(codProd, marca, descripcion, precio);
+            creaProducto(prod);
         }
         fProductos.close();
         long codVenta;

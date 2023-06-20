@@ -186,7 +186,12 @@ public class UIFerreteria {
     }
 
     public void cargarDatos() {
-        ControladorFerreteria.getInstance().leerArchivo();
+        try {
+            ControladorFerreteria.getInstance().leerArchivo();
+        }catch (ClienteException | ProductoException e){
+            System.out.println(e.getMessage());
+        }
+
 
     }
 }
