@@ -1,6 +1,8 @@
 package Modelo;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
     private String rut;
     private String nombre;
     private String direccion;

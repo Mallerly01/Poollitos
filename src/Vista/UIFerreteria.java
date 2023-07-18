@@ -154,7 +154,7 @@ public class UIFerreteria {
                 long codigoVenta = v.getCodigoVenta();
                 DetalleVenta[] detallesVenta = ControladorFerreteria.getInstance().listarDetalleVenta(codigoVenta);
                 System.out.println("*****Detalles de venta*****");
-                System.out.println("Código de vemta: " + codigoVenta);
+                System.out.println("Código de venta: " + codigoVenta);
                 int total = 0;
                 System.out.println("***********************************************************************************************************");
                 System.out.printf("%-15s %-20s %-10s %-15s %-20s %n", "Código", "Descripción", "Cantidad", "Precio unitario", "SubTotal");

@@ -1,9 +1,10 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 //guardar archivos y recuperar archivos
-public class Venta {
+public class Venta implements Serializable {
     private long codigoVenta;
     private LocalDate fecha;
     private ArrayList<DetalleVenta> misDetalles;
@@ -45,6 +46,7 @@ public class Venta {
         int i = 0;
         for (DetalleVenta detalle : misDetalles) {
             arrayDetalles[i] = detalle;
+            i++;
         }
         return arrayDetalles;
     }
